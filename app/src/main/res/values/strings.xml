@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ColorChangeDemo</string>
+    <string name="change_color">Change Color</string>
+    <string name="color_changed_to_x">Color changed to %s</string>
+</resources>
