@@ -53,7 +53,8 @@ class MainActivityTest : KoinTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        `when`(randomColorViewModel.randomColorLiveData).thenReturn(MutableLiveData<Pair<Int, String>>())
+        val randomColorLiveData = MutableLiveData<Pair<Int, String>>()
+        `when`(randomColorViewModel.randomColorLiveData).thenReturn(randomColorLiveData)
 
         koinModule = module {
             viewModel { randomColorViewModel }
