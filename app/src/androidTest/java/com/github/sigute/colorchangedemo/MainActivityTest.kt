@@ -27,7 +27,6 @@ import org.mockito.Mock
 import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations
 
-
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest : KoinTest {
 
@@ -46,8 +45,6 @@ class MainActivityTest : KoinTest {
     @Mock
     lateinit var randomColorViewModel: RandomColorViewModel
 
-    private val randomColorLiveData = MutableLiveData<Pair<Int, String>>()
-
     private lateinit var koinModule: Module
 
     private val testColorRes = R.color.purple_700
@@ -56,7 +53,7 @@ class MainActivityTest : KoinTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        `when`(randomColorViewModel.randomColorLiveData).thenReturn(randomColorLiveData)
+        `when`(randomColorViewModel.randomColorLiveData).thenReturn(MutableLiveData<Pair<Int, String>>())
 
         koinModule = module {
             viewModel { randomColorViewModel }
@@ -83,9 +80,6 @@ class MainActivityTest : KoinTest {
             .perform(click())
         verify(randomColorViewModel).colorTapped()
 
-        onView(withId(R.id.colorName)).check(
-            matches(allOf(isDisplayed(), withText(testColorText)))
-        )
         onView(withId(R.id.colorName)).check(
             matches(allOf(isDisplayed(), withText(testColorText)))
         )
